@@ -1,7 +1,7 @@
 # Weather Dashboard
 
 Walkthrough video link
-https://drive.google.com/file/d/1F6moGVf02z463gY8xnSSBwHbU0mAoD7R/viewLinks
+https://drive.google.com/file/d/1F6moGVf02z463gY8xnSSBwHbU0mAoD7R/view
 
 ## Description
 
