@@ -84,3 +84,17 @@ const viewDepartments = () => {
     init();
   });
 }
+
+const viewRoles = () => {
+  const sql = `SELECT roles.id, 
+              roles.title, 
+              departments.name AS department 
+              FROM roles 
+              INNER JOIN departments 
+              ON roles.departments_id = departments.id`;
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    console.table(data);
+    init();
+  })
+};
