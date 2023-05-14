@@ -277,3 +277,27 @@ const deleteDepartment = () => {
     })
 });
 }
+
+const deleteRole = () => {
+  inquirer.prompt([
+    {
+        name: "roles_id",
+        type: "number",
+        message: "Enter the role id."
+    }
+]).then(function (response) {
+    db.query("DELETE FROM roles WHERE id = ?", [response.role_id], function (err, data) {
+        if (err) throw err;
+        console.log("The role was deleted.");
+
+        db.query(`SELECT * FROM roles`, (err, result) => {
+            if (err) {
+                res.status(500).json({ error: err.message })
+                init();
+            }
+            console.table(result);
+            init();
+        });
+    })
+});
+}
