@@ -224,3 +224,32 @@ const addEmployee = () => {
     })
   })
 }
+
+const updateEmployeeRole = () => {
+  inquirer.prompt([
+    {
+      name: 'first_name',
+      type: 'input',
+      message: 'What is the first name of the employee you wish to update?'
+    },
+    {
+      name: 'manager_id',
+      type: 'number',
+      message: 'What is the manager id for that employee?'
+    }
+  ]).then(function(response) {
+    db.query('UPDATE employees SET manager_id = ? WHERE first_name = ?', [response.manager_id, response.first_name], function (err, data) {
+      if (err) throw err;
+      console.log('Employee updated');
+
+      db.query('SELECT * FROM employees', (err, result) => {
+        if (err) {
+          res.status(500).json({ error: err.message })
+          init()
+        }
+        console.table(result);
+        init()
+      })
+    })
+  })
+}
