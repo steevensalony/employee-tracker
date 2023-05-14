@@ -71,7 +71,6 @@ function init() {
   })
 }
 
-init();
 
 const viewDepartments = () => {
   const sql = 'SELECT * FROM employee_tracker.departments';
@@ -301,3 +300,29 @@ const deleteRole = () => {
     })
 });
 }
+
+const deleteEmployee = () => {
+  inquirer.prompt([
+    {
+        name: "employees_id",
+        type: "number",
+        message: "Enter the employee id."
+    }
+]).then(function (response) {
+    db.query("DELETE FROM employees WHERE id = ?", [response.employees_id], function (err, data) {
+        if (err) throw err;
+        console.log("The employee was deleted.");
+
+        db.query(`SELECT * FROM employees`, (err, result) => {
+            if (err) {
+                res.status(500).json({ error: err.message })
+                init();
+            }
+            console.table(result);
+            init();
+        });
+    })
+});
+}
+
+init();
