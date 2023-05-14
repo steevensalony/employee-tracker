@@ -98,3 +98,23 @@ const viewRoles = () => {
     init();
   })
 };
+
+const viewEmployees = () => {
+  const sql = `SELECT employees.id, 
+              employees.first_name, 
+              employees.last_name, 
+              roles.title AS title,
+              departments.name AS department, 
+              roles.salary, 
+              CONCAT(manager.first_name, ' ' ,manager.last_name) AS manager
+              FROM employees 
+              LEFT JOIN roles ON employees.roles_id = roles.id 
+              LEFT JOIN departments ON roles.departments_id = departments.id 
+              LEFT JOIN employees AS manager ON employees.manager_id = manager.id 
+              ORDER By employees.id`;
+  db.query(sql, (err, data) => {
+    if (err) throw err; 
+    console.table(data);
+    init();
+  });
+}
