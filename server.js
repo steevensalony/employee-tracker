@@ -72,3 +72,15 @@ function init() {
 }
 
 init();
+
+const viewDepartments = () => {
+  const sql = 'SELECT * FROM employee_tracker.departments';
+  db.query(sql, (err, data) => {
+    if (err) {
+      res.status(500).json( { error: err.message });
+        return;
+    }
+    console.table(data);
+    init();
+  });
+}
