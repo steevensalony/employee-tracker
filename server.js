@@ -33,6 +33,7 @@ const questions = [
   }
 ]
 
+// Initialize app
 function init() {
   inquirer.prompt(questions)
   .then(answer => {
@@ -71,7 +72,7 @@ function init() {
   })
 }
 
-
+// View department
 const viewDepartments = () => {
   const sql = 'SELECT * FROM employee_tracker.departments';
   db.query(sql, (err, data) => {
@@ -84,6 +85,7 @@ const viewDepartments = () => {
   });
 }
 
+// View roles
 const viewRoles = () => {
   const sql = `SELECT roles.id, 
               roles.title, 
@@ -98,6 +100,7 @@ const viewRoles = () => {
   })
 };
 
+//View employees
 const viewEmployees = () => {
   const sql = `SELECT employees.id, 
               employees.first_name, 
@@ -118,6 +121,7 @@ const viewEmployees = () => {
   });
 }
 
+// Add department
 const addDepartment = () => {
   inquirer.prompt([
     {
@@ -147,6 +151,7 @@ const addDepartment = () => {
   })
 }
 
+// Add Role
 const addRole = () => {
   inquirer.prompt([
     {
@@ -185,6 +190,7 @@ const addRole = () => {
   })
 }
 
+// Add employee
 const addEmployee = () => {
   inquirer.prompt([
     {
@@ -224,6 +230,7 @@ const addEmployee = () => {
   })
 }
 
+// Update employee
 const updateEmployeeRole = () => {
   inquirer.prompt([
     {
@@ -253,6 +260,7 @@ const updateEmployeeRole = () => {
   })
 }
 
+// Delete department
 const deleteDepartment = () => {
   inquirer.prompt([
     {
@@ -277,6 +285,7 @@ const deleteDepartment = () => {
 });
 }
 
+// Delete Role
 const deleteRole = () => {
   inquirer.prompt([
     {
@@ -301,6 +310,7 @@ const deleteRole = () => {
 });
 }
 
+// Delete employee
 const deleteEmployee = () => {
   inquirer.prompt([
     {
