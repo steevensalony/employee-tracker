@@ -253,3 +253,27 @@ const updateEmployeeRole = () => {
     })
   })
 }
+
+const deleteDepartment = () => {
+  inquirer.prompt([
+    {
+        name: "departments_id",
+        type: "number",
+        message: "Enter the department id."
+    }
+]).then(function (response) {
+    db.query("DELETE FROM departments WHERE id = ?", [response.departments_id], function (err, data) {
+        if (err) throw err;
+        console.log("Department has been deleted.");
+
+        db.query(`SELECT * FROM departments`, (err, result) => {
+            if (err) {
+                res.status(500).json({ error: err.message })
+                init();
+            }
+            console.table(result);
+            init();
+        });
+    })
+});
+}
