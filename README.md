@@ -1,4 +1,4 @@
-# Weather Dashboard
+# Employee Tracker
 
 Walkthrough video link
 https://drive.google.com/file/d/1F6moGVf02z463gY8xnSSBwHbU0mAoD7R/view
