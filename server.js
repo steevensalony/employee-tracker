@@ -185,3 +185,42 @@ const addRole = () => {
     })
   })
 }
+
+const addEmployee = () => {
+  inquirer.prompt([
+    {
+      name: 'first_name',
+      type: 'input',
+      message: 'What is the first name of the employee?'
+    },
+    {
+      name: 'last_name',
+      type: 'input',
+      message: 'What is the last name of the employee?'
+    },
+    {
+      name: 'roles_id',
+      type: 'input',
+      message: 'What is role id is associated with this employee??'
+    },
+    {
+      name: 'manager_id',
+      type: 'input',
+      message: 'What is the manaager id associated with this employee?'
+    }
+  ]).then(function (response) {
+    db.query('INSERT INTO employees (first_name, last_name, roles_id, manager_id) VALUES (?, ?, ?, ?)', [response.first_name, response.last_name, response.roles_id, response.manager_id], function (err, data) {
+      if (err) throw err;
+      console.log('New employee has been added.');
+
+      db.query('SELECT * FROM employees', (err, result) => {
+        if (err) {
+          res.status(500).json({ error: err.message })
+          init()
+        }
+        console.table(result);
+        init()
+      })
+    })
+  })
+}
