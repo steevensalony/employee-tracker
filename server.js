@@ -206,7 +206,7 @@ const addEmployee = () => {
     {
       name: 'roles_id',
       type: 'input',
-      message: 'What is role id is associated with this employee??'
+      message: 'What is the role id associated with this employee?'
     },
     {
       name: 'manager_id',
